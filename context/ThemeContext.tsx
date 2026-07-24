@@ -1,6 +1,7 @@
-'use client';
+"use client";
 
 import React, { createContext, useContext, useEffect, useState } from 'react';
+import { getLocal, setLocal } from '@/utils/storage';
 
 type Theme = 'light' | 'dark';
 
@@ -17,7 +18,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     setMounted(true);
-    const savedTheme = localStorage.getItem('bikerent_theme') as Theme;
+    const savedTheme = getLocal<Theme>('bikerent_theme', null);
     if (savedTheme) {
       setTheme(savedTheme);
       if (savedTheme === 'dark') {
@@ -33,7 +34,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
   const toggleTheme = () => {
     const nextTheme = theme === 'dark' ? 'light' : 'dark';
     setTheme(nextTheme);
-    localStorage.setItem('bikerent_theme', nextTheme);
+    setLocal('bikerent_theme', nextTheme);
 
     if (nextTheme === 'dark') {
       document.documentElement.classList.add('dark');

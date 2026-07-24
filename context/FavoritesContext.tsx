@@ -1,6 +1,7 @@
-'use client';
+"use client";
 
 import React, { createContext, useContext, useEffect, useState } from 'react';
+import { getLocal, setLocal } from '@/utils/storage';
 
 interface FavoritesContextType {
   favorites: string[];
@@ -18,13 +19,13 @@ export function FavoritesProvider({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     try {
-      const savedFavs = localStorage.getItem('bikerent_favs');
+      const savedFavs = getLocal<string[]>('bikerent_favs', []);
       if (savedFavs) {
-        setFavorites(JSON.parse(savedFavs));
+        setFavorites(savedFavs);
       }
-      const savedRecent = localStorage.getItem('bikerent_recent');
+      const savedRecent = getLocal<string[]>('bikerent_recent', []);
       if (savedRecent) {
-        setRecentlyViewed(JSON.parse(savedRecent));
+        setRecentlyViewed(savedRecent);
       }
     } catch (e) {
       console.error('Failed to load local storage state:', e);
@@ -35,7 +36,7 @@ export function FavoritesProvider({ children }: { children: React.ReactNode }) {
     setFavorites((prev) => {
       const exists = prev.includes(bikeId);
       const updated = exists ? prev.filter((id) => id !== bikeId) : [...prev, bikeId];
-      localStorage.setItem('bikerent_favs', JSON.stringify(updated));
+      setLocal('bikerent_favs', updated);
       return updated;
     });
   };
@@ -46,7 +47,7 @@ export function FavoritesProvider({ children }: { children: React.ReactNode }) {
     setRecentlyViewed((prev) => {
       const filtered = prev.filter((id) => id !== bikeId);
       const updated = [bikeId, ...filtered].slice(0, 5); // Keep top 5
-      localStorage.setItem('bikerent_recent', JSON.stringify(updated));
+      setLocal('bikerent_recent', updated);
       return updated;
     });
   };

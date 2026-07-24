@@ -1,5 +1,39 @@
 [
   {
+    "brand": "Bajaj",
+    "model": "Pulsar 160NS",
+    "category": "Sports",
+    "hourlyPrice": 200,
+    "dailyPrice": 2000,
+    "images": [
+      "https://imgs.search.brave.com/Z2IO2E7ZPqrlZj1dlN-tzF2tquSh0oMb3fZP8IKgMa0/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly93d3cu/Y2FyYW5kYmlrZS5j/b20vX25leHQvaW1h/Z2U_dXJsPWh0dHBz/Oi8vaW1hZ2VzLmNh/cmFuZGJpa2UuY29t/L2Jpa2UtaW1hZ2Vz/L2dhbGxlcnkvYmFq/YWovcHVsc2FyLW5z/MTYwL2V4dGVyaW9y/L25zMTYwXy1fYmFq/YWouanBnP3Y9MTc3/MjQ0NTQwNiZ3PTE5/MjAmcT05MA"
+    ],
+    "specs": {
+      "engine": "350cc Single Cylinder",
+      "mileage": "35 kmpl",
+      "topSpeed": "120 km/h",
+      "fuelType": "Petrol",
+      "weight": "180 kg",
+      "transmission": "Manual"
+    },
+    "description": "handle with care other wise you will be fine",
+    "location": "Law Gate, Phagwara",
+    "rating": 4.9,
+    "reviewCount": 1,
+    "isAvailable": true,
+    "ownerInfo": {
+      "name": "Rajesh Kumar",
+      "phone": "+91 98765 43210",
+      "email": "rajesh.bikes@bikerent.in",
+      "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=200",
+      "rating": 4.9,
+      "location": "Law Gate"
+    },
+    "id": "bike-4721",
+    "createdAt": "2026-07-24T07:14:14.721Z",
+    "updatedAt": "2026-07-24T07:14:14.721Z"
+  },
+  {
     "id": "bike-101",
     "brand": "Royal Enfield",
     "model": "Hunter 350",
@@ -69,7 +103,7 @@
       "phone": "+91 98123 45678",
       "email": "vikram.v4@bikerent.in",
       "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop",
-      "rating": 5.0,
+      "rating": 5,
       "location": "Koramangala"
     },
     "createdAt": "2026-01-15T10:00:00.000Z",
@@ -314,7 +348,7 @@
       "phone": "+91 98123 45678",
       "email": "vikram.v4@bikerent.in",
       "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop",
-      "rating": 5.0,
+      "rating": 5,
       "location": "Koramangala"
     },
     "createdAt": "2026-05-01T10:00:00.000Z",
