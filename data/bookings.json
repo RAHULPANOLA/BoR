@@ -1,0 +1,70 @@
+[
+  {
+    "id": "BK-89012",
+    "bikeId": "bike-101",
+    "bikeSummary": {
+      "brand": "Royal Enfield",
+      "model": "Hunter 350",
+      "image": "https://images.unsplash.com/photo-1558981806-ec527fa84c39?q=80&w=1200&auto=format&fit=crop",
+      "location": "Indiranagar, Bangalore",
+      "hourlyPrice": 150,
+      "dailyPrice": 1200
+    },
+    "userDetails": {
+      "name": "Amit Sharma",
+      "email": "amit.sharma@example.com",
+      "phone": "+91 98765 11223",
+      "drivingLicenseNo": "KA032021009876"
+    },
+    "pickupDate": "2026-07-25",
+    "pickupTime": "10:00",
+    "returnDate": "2026-07-25",
+    "returnTime": "16:00",
+    "pricingBreakdown": {
+      "totalHours": 6,
+      "totalDays": 1,
+      "baseRent": 1000,
+      "platformFee": 50,
+      "gst": 189,
+      "securityDeposit": 2000,
+      "grandTotal": 3239,
+      "pricingRuleApplied": "Tiered (2h @ ₹200/h + 4h @ ₹150/h)"
+    },
+    "status": "confirmed",
+    "createdAt": "2026-07-24T08:30:00.000Z"
+  },
+  {
+    "id": "BK-89013",
+    "bikeId": "bike-104",
+    "bikeSummary": {
+      "brand": "Ather",
+      "model": "450X Gen 3",
+      "image": "https://images.unsplash.com/photo-1593764592116-bfb2a97c642a?q=80&w=1200&auto=format&fit=crop",
+      "location": "Whitefield, Bangalore",
+      "hourlyPrice": 90,
+      "dailyPrice": 700
+    },
+    "userDetails": {
+      "name": "Neha Gupta",
+      "email": "neha.gupta@example.com",
+      "phone": "+91 91234 56789",
+      "drivingLicenseNo": "KA012022004321"
+    },
+    "pickupDate": "2026-07-26",
+    "pickupTime": "09:00",
+    "returnDate": "2026-07-27",
+    "returnTime": "09:00",
+    "pricingBreakdown": {
+      "totalHours": 24,
+      "totalDays": 1,
+      "baseRent": 700,
+      "platformFee": 50,
+      "gst": 135,
+      "securityDeposit": 2000,
+      "grandTotal": 2885,
+      "pricingRuleApplied": "Daily Optimized Rate (₹700/day)"
+    },
+    "status": "confirmed",
+    "createdAt": "2026-07-24T09:15:00.000Z"
+  }
+]

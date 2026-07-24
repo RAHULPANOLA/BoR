@@ -1,0 +1,358 @@
+[
+  {
+    "id": "bike-101",
+    "brand": "Royal Enfield",
+    "model": "Hunter 350",
+    "category": "Cruiser",
+    "hourlyPrice": 150,
+    "dailyPrice": 1200,
+    "customHourlyRates": {
+      "firstNHours": 2,
+      "firstNHoursRate": 200,
+      "remainingHoursRate": 150
+    },
+    "images": [
+      "https://images.unsplash.com/photo-1558981806-ec527fa84c39?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1558981403-c5f9899a28bc?q=80&w=1200&auto=format&fit=crop"
+    ],
+    "specs": {
+      "engine": "349cc Air-Oil Cooled",
+      "mileage": "36 kmpl",
+      "topSpeed": "114 km/h",
+      "fuelType": "Petrol",
+      "weight": "181 kg",
+      "transmission": "Manual"
+    },
+    "description": "Agile, compact, and stylish. The Royal Enfield Hunter 350 is crafted for quick urban sprints and relaxed weekend cruising. Features Dual Channel ABS and smooth torque delivery.",
+    "location": "Indiranagar, Bangalore",
+    "rating": 4.8,
+    "reviewCount": 124,
+    "isAvailable": true,
+    "ownerInfo": {
+      "name": "Rajesh Kumar",
+      "phone": "+91 98765 43210",
+      "email": "rajesh.bikes@bikerent.in",
+      "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=200&auto=format&fit=crop",
+      "rating": 4.9,
+      "location": "Indiranagar"
+    },
+    "createdAt": "2026-01-10T10:00:00.000Z",
+    "updatedAt": "2026-07-20T10:00:00.000Z"
+  },
+  {
+    "id": "bike-102",
+    "brand": "Ducati",
+    "model": "Panigale V4",
+    "category": "Sports",
+    "hourlyPrice": 450,
+    "dailyPrice": 3500,
+    "images": [
+      "https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1558981806-ec527fa84c39?q=80&w=1200&auto=format&fit=crop"
+    ],
+    "specs": {
+      "engine": "1103cc Desmosedici Stradale V4",
+      "mileage": "13 kmpl",
+      "topSpeed": "299 km/h",
+      "fuelType": "Petrol",
+      "weight": "175 kg",
+      "transmission": "Manual"
+    },
+    "description": "Pure Italian racing DNA. Unmatched aerodynamics, aggressive power delivery, and track-ready performance for enthusiasts seeking extreme thrills.",
+    "location": "Koramangala, Bangalore",
+    "rating": 4.9,
+    "reviewCount": 89,
+    "isAvailable": true,
+    "ownerInfo": {
+      "name": "Vikram Sethi",
+      "phone": "+91 98123 45678",
+      "email": "vikram.v4@bikerent.in",
+      "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop",
+      "rating": 5.0,
+      "location": "Koramangala"
+    },
+    "createdAt": "2026-01-15T10:00:00.000Z",
+    "updatedAt": "2026-07-21T10:00:00.000Z"
+  },
+  {
+    "id": "bike-103",
+    "brand": "BMW",
+    "model": "R 1250 GS Adventure",
+    "category": "Adventure",
+    "hourlyPrice": 380,
+    "dailyPrice": 3000,
+    "images": [
+      "https://images.unsplash.com/photo-1558981403-c5f9899a28bc?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1558981806-ec527fa84c39?q=80&w=1200&auto=format&fit=crop"
+    ],
+    "specs": {
+      "engine": "1254cc Boxer Twin ShiftCam",
+      "mileage": "21 kmpl",
+      "topSpeed": "200 km/h",
+      "fuelType": "Petrol",
+      "weight": "268 kg",
+      "transmission": "Manual"
+    },
+    "description": "The ultimate globe-trotting adventure tourer. Features electronic suspension adjustment, heated grips, pannier mounts, and high long-distance comfort.",
+    "location": "HSR Layout, Bangalore",
+    "rating": 4.9,
+    "reviewCount": 156,
+    "isAvailable": true,
+    "ownerInfo": {
+      "name": "Arjun Mehta",
+      "phone": "+91 99887 76655",
+      "email": "arjun.bmw@bikerent.in",
+      "avatar": "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=200&auto=format&fit=crop",
+      "rating": 4.8,
+      "location": "HSR Layout"
+    },
+    "createdAt": "2026-02-01T10:00:00.000Z",
+    "updatedAt": "2026-07-22T10:00:00.000Z"
+  },
+  {
+    "id": "bike-104",
+    "brand": "Ather",
+    "model": "450X Gen 3",
+    "category": "Electric",
+    "hourlyPrice": 90,
+    "dailyPrice": 700,
+    "images": [
+      "https://images.unsplash.com/photo-1593764592116-bfb2a97c642a?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1558981806-ec527fa84c39?q=80&w=1200&auto=format&fit=crop"
+    ],
+    "specs": {
+      "engine": "6.4 kW PMSM Electric Motor",
+      "mileage": "146 km Range",
+      "topSpeed": "90 km/h",
+      "fuelType": "Electric",
+      "weight": "111.6 kg",
+      "transmission": "Single-Speed"
+    },
+    "description": "Eco-friendly, fast, and connected. The Ather 450X offers Warp Mode acceleration, touchscreen navigation, auto-hold, and zero emission city rides.",
+    "location": "Whitefield, Bangalore",
+    "rating": 4.7,
+    "reviewCount": 98,
+    "isAvailable": true,
+    "ownerInfo": {
+      "name": "Priya Sharma",
+      "phone": "+91 97654 32109",
+      "email": "priya.ev@bikerent.in",
+      "avatar": "https://images.unsplash.com/photo-1544005313-94ddf0286df2?q=80&w=200&auto=format&fit=crop",
+      "rating": 4.9,
+      "location": "Whitefield"
+    },
+    "createdAt": "2026-02-10T10:00:00.000Z",
+    "updatedAt": "2026-07-22T10:00:00.000Z"
+  },
+  {
+    "id": "bike-105",
+    "brand": "KTM",
+    "model": "Duke 390",
+    "category": "Sports",
+    "hourlyPrice": 220,
+    "dailyPrice": 1700,
+    "images": [
+      "https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1558981403-c5f9899a28bc?q=80&w=1200&auto=format&fit=crop"
+    ],
+    "specs": {
+      "engine": "398.7cc Single Cylinder LC4c",
+      "mileage": "28 kmpl",
+      "topSpeed": "167 km/h",
+      "fuelType": "Petrol",
+      "weight": "165 kg",
+      "transmission": "Manual"
+    },
+    "description": "The Corner Rocket! Lightweight trellis frame, quickshifter+, ride-by-wire throttle, and razor-sharp handling make it a blast for mountain twists and city streets.",
+    "location": "MG Road, Bangalore",
+    "rating": 4.8,
+    "reviewCount": 210,
+    "isAvailable": false,
+    "ownerInfo": {
+      "name": "Siddharth Rao",
+      "phone": "+91 98450 12345",
+      "email": "siddharth.ktm@bikerent.in",
+      "avatar": "https://images.unsplash.com/photo-1522075469751-3a6694fb2f61?q=80&w=200&auto=format&fit=crop",
+      "rating": 4.7,
+      "location": "MG Road"
+    },
+    "createdAt": "2026-03-01T10:00:00.000Z",
+    "updatedAt": "2026-07-23T10:00:00.000Z"
+  },
+  {
+    "id": "bike-106",
+    "brand": "Triumph",
+    "model": "Bonneville T120",
+    "category": "Cruiser",
+    "hourlyPrice": 320,
+    "dailyPrice": 2500,
+    "images": [
+      "https://images.unsplash.com/photo-1558981806-ec527fa84c39?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?q=80&w=1200&auto=format&fit=crop"
+    ],
+    "specs": {
+      "engine": "1200cc Parallel Twin",
+      "mileage": "21 kmpl",
+      "topSpeed": "185 km/h",
+      "fuelType": "Petrol",
+      "weight": "236 kg",
+      "transmission": "Manual"
+    },
+    "description": "Classic British heritage reborn. Deep exhaust rumble, plush leather seat, chrome accents, and effortless modern cruise control.",
+    "location": "Jayanagar, Bangalore",
+    "rating": 4.9,
+    "reviewCount": 64,
+    "isAvailable": true,
+    "ownerInfo": {
+      "name": "Rohan Deshmukh",
+      "phone": "+91 99123 99123",
+      "email": "rohan.triumph@bikerent.in",
+      "avatar": "https://images.unsplash.com/photo-1492562080023-ab3db95bfbce?q=80&w=200&auto=format&fit=crop",
+      "rating": 4.9,
+      "location": "Jayanagar"
+    },
+    "createdAt": "2026-03-12T10:00:00.000Z",
+    "updatedAt": "2026-07-23T10:00:00.000Z"
+  },
+  {
+    "id": "bike-107",
+    "brand": "Yamaha",
+    "model": "YZF R15 V4",
+    "category": "Sports",
+    "hourlyPrice": 140,
+    "dailyPrice": 1100,
+    "images": [
+      "https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1558981403-c5f9899a28bc?q=80&w=1200&auto=format&fit=crop"
+    ],
+    "specs": {
+      "engine": "155cc Liquid Cooled SOHC VVA",
+      "mileage": "45 kmpl",
+      "topSpeed": "140 km/h",
+      "fuelType": "Petrol",
+      "weight": "142 kg",
+      "transmission": "Manual"
+    },
+    "description": "Supersport styling derived from Yamaha's YZF-R1. Variable Valve Actuation (VVA), Traction Control, and Assist & Slipper Clutch.",
+    "location": "BTM Layout, Bangalore",
+    "rating": 4.6,
+    "reviewCount": 178,
+    "isAvailable": true,
+    "ownerInfo": {
+      "name": "Kiran V",
+      "phone": "+91 98866 55443",
+      "email": "kiran.yamaha@bikerent.in",
+      "avatar": "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?q=80&w=200&auto=format&fit=crop",
+      "rating": 4.8,
+      "location": "BTM Layout"
+    },
+    "createdAt": "2026-04-05T10:00:00.000Z",
+    "updatedAt": "2026-07-23T10:00:00.000Z"
+  },
+  {
+    "id": "bike-108",
+    "brand": "Honda",
+    "model": "Activa 6G Premium",
+    "category": "Scooter",
+    "hourlyPrice": 70,
+    "dailyPrice": 500,
+    "images": [
+      "https://images.unsplash.com/photo-1593764592116-bfb2a97c642a?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1558981806-ec527fa84c39?q=80&w=1200&auto=format&fit=crop"
+    ],
+    "specs": {
+      "engine": "109.51cc PGM-FI Engine",
+      "mileage": "50 kmpl",
+      "topSpeed": "85 km/h",
+      "fuelType": "Petrol",
+      "weight": "106 kg",
+      "transmission": "Automatic"
+    },
+    "description": "India's most trusted scooter for seamless daily commutes. Features Telescopic Suspension, Silent Start with ACG, and ample under-seat storage.",
+    "location": "Electronic City, Bangalore",
+    "rating": 4.7,
+    "reviewCount": 320,
+    "isAvailable": true,
+    "ownerInfo": {
+      "name": "Ananya Nair",
+      "phone": "+91 97788 11223",
+      "email": "ananya.honda@bikerent.in",
+      "avatar": "https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=200&auto=format&fit=crop",
+      "rating": 4.9,
+      "location": "Electronic City"
+    },
+    "createdAt": "2026-04-18T10:00:00.000Z",
+    "updatedAt": "2026-07-24T10:00:00.000Z"
+  },
+  {
+    "id": "bike-109",
+    "brand": "Kawasaki",
+    "model": "Ninja ZX-6R",
+    "category": "Sports",
+    "hourlyPrice": 400,
+    "dailyPrice": 3200,
+    "images": [
+      "https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1558981403-c5f9899a28bc?q=80&w=1200&auto=format&fit=crop"
+    ],
+    "specs": {
+      "engine": "636cc In-Line Four Cylinder",
+      "mileage": "16 kmpl",
+      "topSpeed": "260 km/h",
+      "fuelType": "Petrol",
+      "weight": "198 kg",
+      "transmission": "Manual"
+    },
+    "description": "Unleash superbike performance with Kawasaki's screamer engine, Showa SFF-BP front fork, dual radial-mount calipers, and KTRC traction control.",
+    "location": "Koramangala, Bangalore",
+    "rating": 4.9,
+    "reviewCount": 74,
+    "isAvailable": true,
+    "ownerInfo": {
+      "name": "Vikram Sethi",
+      "phone": "+91 98123 45678",
+      "email": "vikram.v4@bikerent.in",
+      "avatar": "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=200&auto=format&fit=crop",
+      "rating": 5.0,
+      "location": "Koramangala"
+    },
+    "createdAt": "2026-05-01T10:00:00.000Z",
+    "updatedAt": "2026-07-24T10:00:00.000Z"
+  },
+  {
+    "id": "bike-110",
+    "brand": "Harley-Davidson",
+    "model": "Iron 883",
+    "category": "Cruiser",
+    "hourlyPrice": 350,
+    "dailyPrice": 2800,
+    "images": [
+      "https://images.unsplash.com/photo-1558981806-ec527fa84c39?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?q=80&w=1200&auto=format&fit=crop"
+    ],
+    "specs": {
+      "engine": "883cc Air-Cooled Evolution V-Twin",
+      "mileage": "20 kmpl",
+      "topSpeed": "165 km/h",
+      "fuelType": "Petrol",
+      "weight": "256 kg",
+      "transmission": "Manual"
+    },
+    "description": "Raw, blacked-out, stripped-down custom style. Iconic V-Twin rumble, drag-style handlebars, and low-slung bucket seat.",
+    "location": "Indiranagar, Bangalore",
+    "rating": 4.8,
+    "reviewCount": 112,
+    "isAvailable": true,
+    "ownerInfo": {
+      "name": "Rajesh Kumar",
+      "phone": "+91 98765 43210",
+      "email": "rajesh.bikes@bikerent.in",
+      "avatar": "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=200&auto=format&fit=crop",
+      "rating": 4.9,
+      "location": "Indiranagar"
+    },
+    "createdAt": "2026-05-15T10:00:00.000Z",
+    "updatedAt": "2026-07-24T10:00:00.000Z"
+  }
+]
