@@ -1,6 +1,6 @@
 import { Bike, Booking, User } from '@/types';
 
-export fontSize INITIAL_BIKES: Bike[] = [
+export const INITIAL_BIKES: Bike[] = [
   {
     id: 'bike-101',
     brand: 'Royal Enfield',
