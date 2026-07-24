@@ -1,17 +1,30 @@
-import React from 'react';
+'use client';
+
+import React, { use } from 'react';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { fetchBikeByIdAction } from '@/lib/actions';
+import { useData } from '@/context/DataContext';
 import { BookingForm } from '@/components/BookingForm';
-import { ArrowLeft, MapPin, ShieldCheck } from 'lucide-react';
+import { ArrowLeft, MapPin, ShieldCheck, Loader2 } from 'lucide-react';
 
 interface BookPageProps {
   params: Promise<{ id: string }>;
 }
 
-export default async function BookPage({ params }: BookPageProps) {
-  const { id } = await params;
-  const bike = await fetchBikeByIdAction(id);
+export default function BookPage({ params }: BookPageProps) {
+  const { id } = use(params);
+  const { getBikeById, loading } = useData();
+
+  if (loading) {
+    return (
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 flex items-center justify-center text-slate-400 gap-2">
+        <Loader2 className="w-6 h-6 animate-spin text-emerald-400" />
+        <span>Loading Bike Details...</span>
+      </div>
+    );
+  }
+
+  const bike = getBikeById(id);
 
   if (!bike) {
     notFound();
@@ -49,7 +62,7 @@ export default async function BookPage({ params }: BookPageProps) {
 
           <div className="flex items-center gap-2 text-xs font-semibold text-emerald-400 bg-emerald-500/10 px-4 py-2 rounded-2xl border border-emerald-500/20">
             <ShieldCheck className="w-4 h-4" />
-            <span>Instant Reservation Active</span>
+            <span>Instant Local Storage Reservation</span>
           </div>
         </div>
       </div>

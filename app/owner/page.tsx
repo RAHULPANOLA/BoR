@@ -1,25 +1,25 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
-import { Bike, Booking } from '@/types';
-import {
-  fetchBikesAction,
-  createBikeAction,
-  updateBikeAction,
-  deleteBikeAction,
-  toggleBikeAvailabilityAction,
-  fetchBookingsAction,
-} from '@/lib/actions';
+import React, { useState } from 'react';
+import { Bike } from '@/types';
+import { useData } from '@/context/DataContext';
 import { formatCurrency } from '@/utils/pricing';
 import { AvailabilityBadge } from '@/components/AvailabilityBadge';
 import { useToast } from '@/context/ToastContext';
-import { Plus, Edit3, Trash2, CheckCircle2, XCircle, Power, UserCheck, Layers, Bike as BikeIcon, Search, X, Loader2 } from 'lucide-react';
+import { Plus, Edit3, Trash2, Power, Layers, Bike as BikeIcon, X, Loader2 } from 'lucide-react';
 
 export default function OwnerDashboardPage() {
   const { showToast } = useToast();
-  const [bikes, setBikes] = useState<Bike[]>([]);
-  const [bookings, setBookings] = useState<Booking[]>([]);
-  const [loading, setLoading] = useState(true);
+  const {
+    bikes,
+    bookings,
+    loading,
+    createBike,
+    updateBike,
+    deleteBike,
+    toggleBikeAvailability,
+  } = useData();
+
   const [activeTab, setActiveTab] = useState<'bikes' | 'bookings'>('bikes');
 
   // Modal State
@@ -48,26 +48,6 @@ export default function OwnerDashboardPage() {
     ownerPhone: '+91 98765 43210',
     ownerEmail: 'rajesh.bikes@bikerent.in',
   });
-
-  const loadData = async () => {
-    setLoading(true);
-    try {
-      const [bikesData, bookingsData] = await Promise.all([
-        fetchBikesAction(),
-        fetchBookingsAction(),
-      ]);
-      setBikes(bikesData);
-      setBookings(bookingsData);
-    } catch (e) {
-      console.error(e);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    loadData();
-  }, []);
 
   const openAddModal = () => {
     setEditingBike(null);
@@ -119,28 +99,22 @@ export default function OwnerDashboardPage() {
     setIsModalOpen(true);
   };
 
-  const handleToggleAvailability = async (id: string, currentStatus: boolean) => {
-    try {
-      await toggleBikeAvailabilityAction(id, !currentStatus);
-      showToast(`Updated status to ${!currentStatus ? 'Available' : 'Unavailable'}`, 'success');
-      loadData();
-    } catch (e) {
-      showToast('Failed to update status', 'error');
+  const handleToggleAvailability = (id: string) => {
+    const updated = toggleBikeAvailability(id);
+    if (updated) {
+      showToast(`Updated status to ${updated.isAvailable ? 'Available' : 'Unavailable'}`, 'success');
     }
   };
 
-  const handleDeleteBike = async (id: string) => {
-    if (!confirm('Are you sure you want to delete this bike listing from the fleet?')) return;
-    try {
-      await deleteBikeAction(id);
-      showToast('Bike deleted successfully', 'info');
-      loadData();
-    } catch (e) {
-      showToast('Failed to delete bike', 'error');
+  const handleDeleteBike = (id: string) => {
+    if (!confirm('Are you sure you want to delete this bike listing from Local Storage?')) return;
+    const success = deleteBike(id);
+    if (success) {
+      showToast('Bike deleted from local storage', 'info');
     }
   };
 
-  const handleFormSubmit = async (e: React.FormEvent) => {
+  const handleFormSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     setSubmitting(true);
 
@@ -176,15 +150,14 @@ export default function OwnerDashboardPage() {
       };
 
       if (editingBike) {
-        await updateBikeAction(editingBike.id, bikePayload);
-        showToast('Bike updated successfully!', 'success');
+        updateBike(editingBike.id, bikePayload);
+        showToast('Bike updated in Local Storage!', 'success');
       } else {
-        await createBikeAction(bikePayload);
-        showToast('New bike listed successfully!', 'success');
+        createBike(bikePayload);
+        showToast('New bike listed in Local Storage!', 'success');
       }
 
       setIsModalOpen(false);
-      loadData();
     } catch (err: any) {
       showToast(err.message || 'Operation failed', 'error');
     } finally {
@@ -198,7 +171,7 @@ export default function OwnerDashboardPage() {
       <div className="flex flex-wrap items-center justify-between gap-4 border-b border-slate-800 pb-6">
         <div>
           <span className="text-xs font-extrabold text-amber-400 uppercase tracking-widest block mb-1">
-            Host Control Panel
+            Browser Local Storage Panel
           </span>
           <h1 className="text-3xl font-black text-slate-100">Owner Dashboard</h1>
         </div>
@@ -290,7 +263,7 @@ export default function OwnerDashboardPage() {
 
                         <td className="px-6 py-4">
                           <button
-                            onClick={() => handleToggleAvailability(b.id, b.isAvailable)}
+                            onClick={() => handleToggleAvailability(b.id)}
                             className="cursor-pointer"
                             title="Click to toggle availability"
                           >
@@ -301,7 +274,7 @@ export default function OwnerDashboardPage() {
                         <td className="px-6 py-4 text-right">
                           <div className="flex items-center justify-end gap-2">
                             <button
-                              onClick={() => handleToggleAvailability(b.id, b.isAvailable)}
+                              onClick={() => handleToggleAvailability(b.id)}
                               className="p-2 rounded-xl bg-slate-800 hover:bg-slate-700 text-slate-300 hover:text-white transition-colors cursor-pointer"
                               title="Toggle Availability"
                             >

@@ -1,6 +1,7 @@
 import type { Metadata } from 'next';
 import './globals.css';
 import { ThemeProvider } from '@/context/ThemeContext';
+import { DataProvider } from '@/context/DataContext';
 import { FavoritesProvider } from '@/context/FavoritesContext';
 import { ToastProvider } from '@/context/ToastContext';
 import { Navbar } from '@/components/Navbar';
@@ -21,13 +22,15 @@ export default function RootLayout({
     <html lang="en" className="dark">
       <body className="antialiased flex flex-col min-h-screen selection:bg-emerald-500 selection:text-slate-950">
         <ThemeProvider>
-          <FavoritesProvider>
-            <ToastProvider>
-              <Navbar />
-              <main className="flex-1">{children}</main>
-              <Footer />
-            </ToastProvider>
-          </FavoritesProvider>
+          <DataProvider>
+            <FavoritesProvider>
+              <ToastProvider>
+                <Navbar />
+                <main className="flex-1">{children}</main>
+                <Footer />
+              </ToastProvider>
+            </FavoritesProvider>
+          </DataProvider>
         </ThemeProvider>
       </body>
     </html>

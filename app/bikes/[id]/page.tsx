@@ -1,7 +1,9 @@
-import React from 'react';
+'use client';
+
+import React, { use } from 'react';
 import Link from 'next/link';
 import { notFound } from 'next/navigation';
-import { fetchBikeByIdAction, fetchBikesAction } from '@/lib/actions';
+import { useData } from '@/context/DataContext';
 import { Rating } from '@/components/Rating';
 import { AvailabilityBadge } from '@/components/AvailabilityBadge';
 import { OwnerCard } from '@/components/OwnerCard';
@@ -17,25 +19,34 @@ import {
   ShieldCheck,
   ArrowRight,
   ArrowLeft,
-  Share2,
-  Calendar,
   CheckCircle,
+  Loader2,
 } from 'lucide-react';
 
 interface BikeDetailsPageProps {
   params: Promise<{ id: string }>;
 }
 
-export default async function BikeDetailsPage({ params }: BikeDetailsPageProps) {
-  const { id } = await params;
-  const bike = await fetchBikeByIdAction(id);
+export default function BikeDetailsPage({ params }: BikeDetailsPageProps) {
+  const { id } = use(params);
+  const { bikes, getBikeById, loading } = useData();
+
+  if (loading) {
+    return (
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 flex items-center justify-center text-slate-400 gap-2">
+        <Loader2 className="w-6 h-6 animate-spin text-emerald-400" />
+        <span>Loading Bike Specs...</span>
+      </div>
+    );
+  }
+
+  const bike = getBikeById(id);
 
   if (!bike) {
     notFound();
   }
 
-  const allBikes = await fetchBikesAction();
-  const relatedBikes = allBikes
+  const relatedBikes = bikes
     .filter((b) => b.id !== bike.id && (b.category === bike.category || b.brand === bike.brand))
     .slice(0, 3);
 

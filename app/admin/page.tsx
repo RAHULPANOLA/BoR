@@ -1,43 +1,24 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
-import { AdminStats, Booking, Bike } from '@/types';
-import { fetchAdminStatsAction, fetchBookingsAction, fetchBikesAction } from '@/lib/actions';
+import React from 'react';
+import { useData } from '@/context/DataContext';
 import { formatCurrency } from '@/utils/pricing';
-import { Shield, Bike as BikeIcon, Layers, TrendingUp, CheckCircle, Clock, DollarSign, PieChart, ArrowUpRight } from 'lucide-react';
+import { Shield, Bike as BikeIcon, Layers, TrendingUp, CheckCircle, Clock, DollarSign, PieChart, ArrowUpRight, Loader2 } from 'lucide-react';
 
 export default function AdminDashboardPage() {
-  const [stats, setStats] = useState<AdminStats | null>(null);
-  const [recentBookings, setRecentBookings] = useState<Booking[]>([]);
-  const [loading, setLoading] = useState(true);
+  const { getAdminStats, bookings, loading } = useData();
 
-  useEffect(() => {
-    async function loadAdminData() {
-      setLoading(true);
-      try {
-        const [statsData, bookingsData] = await Promise.all([
-          fetchAdminStatsAction(),
-          fetchBookingsAction(),
-        ]);
-        setStats(statsData);
-        setRecentBookings(bookingsData.slice(0, 5));
-      } catch (e) {
-        console.error(e);
-      } finally {
-        setLoading(false);
-      }
-    }
-    loadAdminData();
-  }, []);
-
-  if (loading || !stats) {
+  if (loading) {
     return (
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-6">
-        <div className="h-40 rounded-3xl bg-slate-900/40 border border-slate-800 animate-pulse" />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 flex items-center justify-center text-slate-400 gap-2">
+        <Loader2 className="w-6 h-6 animate-spin text-emerald-400" />
+        <span>Loading Admin Analytics...</span>
       </div>
     );
   }
 
+  const stats = getAdminStats();
+  const recentBookings = bookings.slice(0, 5);
   const maxMonthlyRevenue = Math.max(...stats.monthlyRevenue.map((m) => m.revenue), 1);
 
   return (
@@ -47,14 +28,14 @@ export default function AdminDashboardPage() {
         <div>
           <div className="flex items-center gap-2 text-rose-400 font-extrabold text-xs uppercase tracking-widest mb-1">
             <Shield className="w-4 h-4" />
-            <span>Platform Overview</span>
+            <span>Browser Storage Analytics</span>
           </div>
           <h1 className="text-3xl font-black text-slate-100">Admin Control Center</h1>
         </div>
 
         <div className="flex items-center gap-2 px-4 py-2 rounded-2xl bg-emerald-500/10 text-emerald-400 border border-emerald-500/20 text-xs font-bold">
           <span className="w-2 h-2 rounded-full bg-emerald-400 animate-ping" />
-          <span>Live Data Sync</span>
+          <span>Live Local Storage Sync</span>
         </div>
       </div>
 
@@ -68,7 +49,7 @@ export default function AdminDashboardPage() {
           </div>
           <p className="text-2xl font-black text-slate-100">{formatCurrency(stats.totalRevenue)}</p>
           <p className="text-[11px] text-emerald-400/80 flex items-center gap-1 font-medium">
-            <ArrowUpRight className="w-3.5 h-3.5" /> Calculated from JSON
+            <ArrowUpRight className="w-3.5 h-3.5" /> Client LocalStorage
           </p>
         </div>
 
@@ -122,7 +103,7 @@ export default function AdminDashboardPage() {
               <TrendingUp className="w-5 h-5 text-emerald-400" />
               <h3 className="text-base font-bold text-slate-100">Monthly Revenue Growth</h3>
             </div>
-            <span className="text-xs text-slate-400">Current Year</span>
+            <span className="text-xs text-slate-400 font-medium">Local Storage Data</span>
           </div>
 
           <div className="h-56 flex items-end gap-3 sm:gap-6 pt-6 px-2">

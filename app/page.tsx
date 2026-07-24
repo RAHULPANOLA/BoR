@@ -1,8 +1,10 @@
+'use client';
+
 import React from 'react';
 import Link from 'next/link';
 import { Hero } from '@/components/Hero';
 import { BikeCard } from '@/components/BikeCard';
-import { fetchBikesAction } from '@/lib/actions';
+import { useData } from '@/context/DataContext';
 import {
   Bike as BikeIcon,
   ShieldCheck,
@@ -15,18 +17,19 @@ import {
   Star,
   Users,
   Compass,
+  Loader2,
 } from 'lucide-react';
 
-export default async function HomePage() {
-  const bikes = await fetchBikesAction();
+export default function HomePage() {
+  const { bikes, loading } = useData();
   const featuredBikes = bikes.slice(0, 6);
 
   const categories = [
-    { name: 'Cruiser', count: 'Royal Enfield & Harleys', icon: '🏍️', image: 'https://images.unsplash.com/photo-1558981806-ec527fa84c39?q=80&w=600' },
-    { name: 'Sports', count: 'Ducati & Ninja Supersports', icon: '⚡', image: 'https://images.unsplash.com/photo-1568772585407-9361f9bf3a87?q=80&w=600' },
-    { name: 'Adventure', count: 'BMW GS Tourers', icon: '⛰️', image: 'https://images.unsplash.com/photo-1558981403-c5f9899a28bc?q=80&w=600' },
-    { name: 'Electric', count: 'Ather & EV Scooters', icon: '🔌', image: 'https://images.unsplash.com/photo-1593764592116-bfb2a97c642a?q=80&w=600' },
-    { name: 'Scooter', count: 'Honda Activa & Gearless', icon: '🛵', image: 'https://images.unsplash.com/photo-1593764592116-bfb2a97c642a?q=80&w=600' },
+    { name: 'Cruiser', count: 'Royal Enfield & Harleys', icon: '🏍️' },
+    { name: 'Sports', count: 'Ducati & Ninja Supersports', icon: '⚡' },
+    { name: 'Adventure', count: 'BMW GS Tourers', icon: '⛰️' },
+    { name: 'Electric', count: 'Ather & EV Scooters', icon: '🔌' },
+    { name: 'Scooter', count: 'Honda Activa & Gearless', icon: '🛵' },
   ];
 
   const popularLocations = [
@@ -83,11 +86,19 @@ export default async function HomePage() {
           </Link>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {featuredBikes.map((bike) => (
-            <BikeCard key={bike.id} bike={bike} />
-          ))}
-        </div>
+        {loading ? (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {[1, 2, 3].map((n) => (
+              <div key={n} className="h-80 rounded-3xl bg-slate-900/40 border border-slate-800 animate-pulse" />
+            ))}
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {featuredBikes.map((bike) => (
+              <BikeCard key={bike.id} bike={bike} />
+            ))}
+          </div>
+        )}
       </section>
 
       {/* Categories */}

@@ -7,7 +7,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
 import { Bike } from '@/types';
 import { calculateBookingPrice } from '@/utils/pricing';
-import { createBookingAction } from '@/lib/actions';
+import { useData } from '@/context/DataContext';
 import { BookingSummary } from '@/components/BookingSummary';
 import { useToast } from '@/context/ToastContext';
 import { Calendar, Clock, User, Phone, Mail, FileText, ArrowRight, Loader2 } from 'lucide-react';
@@ -32,13 +32,11 @@ interface BookingFormProps {
 export function BookingForm({ bike }: BookingFormProps) {
   const router = useRouter();
   const { showToast } = useToast();
+  const { createBooking } = useData();
   const [isSubmitting, setIsSubmitting] = useState(false);
 
   // Default dates: Today and Tomorrow
   const todayStr = new Date().toISOString().split('T')[0];
-  const tomorrowObj = new Date();
-  tomorrowObj.setDate(tomorrowObj.getDate() + 1);
-  const tomorrowStr = tomorrowObj.toISOString().split('T')[0];
 
   const {
     register,
@@ -77,7 +75,7 @@ export function BookingForm({ bike }: BookingFormProps) {
   const onSubmit = async (values: BookingFormValues) => {
     setIsSubmitting(true);
     try {
-      const booking = await createBookingAction({
+      const booking = createBooking({
         bikeId: bike.id,
         userDetails: {
           name: values.name,
@@ -92,7 +90,7 @@ export function BookingForm({ bike }: BookingFormProps) {
         pricingBreakdown: breakdown,
       });
 
-      showToast('Booking confirmed successfully!', 'success');
+      showToast('Booking saved to Local Browser Storage!', 'success');
       router.push(`/booking-success/${booking.id}`);
     } catch (err: any) {
       console.error('Booking failure:', err);
@@ -245,7 +243,7 @@ export function BookingForm({ bike }: BookingFormProps) {
             {isSubmitting ? (
               <>
                 <Loader2 className="w-5 h-5 animate-spin" />
-                <span>Processing Reservation...</span>
+                <span>Saving Booking to Storage...</span>
               </>
             ) : (
               <>

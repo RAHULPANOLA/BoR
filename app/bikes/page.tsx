@@ -1,21 +1,20 @@
 'use client';
 
-import React, { useEffect, useState, useMemo, Suspense } from 'react';
+import React, { useState, useMemo, Suspense } from 'react';
 import { useSearchParams } from 'next/navigation';
-import { Bike, BikeFilterState } from '@/types';
-import { fetchBikesAction } from '@/lib/actions';
+import { BikeFilterState } from '@/types';
+import { useData } from '@/context/DataContext';
 import { BikeCard } from '@/components/BikeCard';
 import { SearchBar } from '@/components/SearchBar';
 import { FilterSidebar } from '@/components/FilterSidebar';
 import { useFavorites } from '@/context/FavoritesContext';
-import { Bike as BikeIcon, Heart, Filter, Loader2 } from 'lucide-react';
+import { Bike as BikeIcon, Heart, Filter, Loader2, RotateCcw } from 'lucide-react';
 
 function BikesContent() {
   const searchParams = useSearchParams();
+  const { bikes, loading, resetToDefaults } = useData();
   const { favorites } = useFavorites();
 
-  const [bikes, setBikes] = useState<Bike[]>([]);
-  const [loading, setLoading] = useState(true);
   const [showMobileFilter, setShowMobileFilter] = useState(false);
 
   const initialFilters: BikeFilterState = {
@@ -32,21 +31,6 @@ function BikesContent() {
 
   const [filters, setFilters] = useState<BikeFilterState>(initialFilters);
   const [onlyFavorites, setOnlyFavorites] = useState<boolean>(searchParams.get('favorites') === 'true');
-
-  useEffect(() => {
-    async function loadData() {
-      setLoading(true);
-      try {
-        const data = await fetchBikesAction();
-        setBikes(data);
-      } catch (err) {
-        console.error('Failed to load bikes:', err);
-      } finally {
-        setLoading(false);
-      }
-    }
-    loadData();
-  }, []);
 
   const brands = useMemo(() => {
     return Array.from(new Set(bikes.map((b) => b.brand)));
@@ -98,12 +82,21 @@ function BikesContent() {
         <div>
           <div className="flex items-center gap-2 text-emerald-400 font-extrabold text-xs uppercase tracking-widest mb-1">
             <BikeIcon className="w-4 h-4" />
-            <span>Full Rental Fleet</span>
+            <span>Browser LocalStorage Fleet</span>
           </div>
           <h1 className="text-3xl font-black text-slate-100">Browse Bikes</h1>
         </div>
 
         <div className="flex items-center gap-3">
+          <button
+            onClick={resetToDefaults}
+            className="flex items-center gap-1.5 px-3.5 py-2.5 rounded-2xl text-xs font-bold text-slate-400 bg-slate-900 border border-slate-800 hover:text-white transition-colors cursor-pointer"
+            title="Reset LocalStorage to Default 10 Bikes"
+          >
+            <RotateCcw className="w-3.5 h-3.5" />
+            <span>Reset Storage</span>
+          </button>
+
           <button
             onClick={() => setOnlyFavorites(!onlyFavorites)}
             className={`flex items-center gap-2 px-4 py-2.5 rounded-2xl text-xs font-bold border transition-all cursor-pointer ${
@@ -200,7 +193,7 @@ export default function BikesPage() {
         fallback={
           <div className="flex items-center justify-center py-20 text-slate-400 gap-2">
             <Loader2 className="w-6 h-6 animate-spin text-emerald-400" />
-            <span className="text-sm">Loading Bike Fleet...</span>
+            <span className="text-sm">Loading Local Storage Fleet...</span>
           </div>
         }
       >

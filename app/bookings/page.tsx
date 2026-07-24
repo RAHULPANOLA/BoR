@@ -1,43 +1,24 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Link from 'next/link';
-import { Booking } from '@/types';
-import { fetchBookingsAction, cancelBookingAction } from '@/lib/actions';
+import { useData } from '@/context/DataContext';
 import { formatCurrency } from '@/utils/pricing';
 import { useToast } from '@/context/ToastContext';
-import { Search, Calendar, Clock, MapPin, Receipt, XCircle, CheckCircle2, ArrowRight } from 'lucide-react';
+import { Search, Calendar, Clock, MapPin, Receipt, XCircle, ArrowRight } from 'lucide-react';
 
 export default function BookingsHistoryPage() {
   const { showToast } = useToast();
-  const [bookings, setBookings] = useState<Booking[]>([]);
-  const [loading, setLoading] = useState(true);
+  const { bookings, cancelBooking, loading } = useData();
   const [search, setSearch] = useState('');
 
-  const loadBookings = async () => {
-    setLoading(true);
-    try {
-      const data = await fetchBookingsAction();
-      setBookings(data);
-    } catch (e) {
-      console.error(e);
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  useEffect(() => {
-    loadBookings();
-  }, []);
-
-  const handleCancelBooking = async (id: string) => {
+  const handleCancelBooking = (id: string) => {
     if (!confirm('Are you sure you want to cancel this booking reservation?')) return;
 
-    try {
-      await cancelBookingAction(id);
-      showToast('Booking cancelled successfully', 'info');
-      loadBookings();
-    } catch (e) {
+    const success = cancelBooking(id);
+    if (success) {
+      showToast('Booking cancelled successfully in Local Storage', 'info');
+    } else {
       showToast('Failed to cancel booking', 'error');
     }
   };
@@ -59,7 +40,7 @@ export default function BookingsHistoryPage() {
       <div className="flex flex-wrap items-center justify-between gap-4 border-b border-slate-800 pb-6">
         <div>
           <span className="text-xs font-extrabold text-emerald-400 uppercase tracking-widest block mb-1">
-            Renter Account
+            Browser Local Storage
           </span>
           <h1 className="text-3xl font-black text-slate-100">Booking History</h1>
         </div>
